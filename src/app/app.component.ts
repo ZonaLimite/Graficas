@@ -9,9 +9,13 @@ import { FaultsService } from './services/faults.service';
 })
 export class AppComponent {
 
+  //Inyeccion de dependencia del servicio
+  constructor(private faultsService: FaultsService){}
 
-  constructor(private faultsService: FaultsService) {
-     //Object.assign(this, { single })
+  ngOnInit(){
+    setInterval(() =>{
+      this.faultsService.faultsDataFromRest();
+    }, 3000);
   }
 
   //metodo para obtener la data de la grafica
