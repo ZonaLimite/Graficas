@@ -8,20 +8,24 @@ import { FaultsService } from './services/faults.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+   interval: number;
 
   //Inyeccion de dependencia del servicio
-  constructor(private faultsService: FaultsService){}
+  constructor(private faultsService: FaultsService){
+    this.interval=0;
+  }
 
   ngOnInit(){
     setInterval(() =>{
       this.faultsService.faultsDataFromRest();
+      this.interval++;
     }, 3000);
   }
 
-  //metodo para obtener la data de la grafica
-  //desde el servicio
+  //La propiedad single apunta a un metodo  del servcio
+  //para obtener la data de la grafica
   get single(){
-    return this.faultsService.faultsData;
+    return this.faultsService.dataOfService;
   }
 
   onRandomData(){
@@ -39,7 +43,7 @@ export class AppComponent {
    xAxisLabel = 'Salidas Nivel AF';
    showYAxisLabel = true;
    yAxisLabel = 'Fallos Stop Devices';
-   yMax =50;
+   yMax =3;
    padding=1;
    showGridLines = true;
    schemeType = ScaleType.Linear;

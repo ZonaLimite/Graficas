@@ -12,22 +12,20 @@ interface Faults{
 export class FaultsService {
 
   constructor(private http: HttpClient) { }
-  private myUrl:string="";;
+  private myUrl:string="";
 
   // array de datos de la grafica
-  private data: Faults[] = [ {
-    "name": "AF01",
-    "value": 10
-  }];
+  private data: Faults[] = [ ];
 
-  get faultsData(){
+  get dataOfService(){
     return this.data;
   }
-  //metodo falla
+
+  //metodo obtencion data grafica mediante Rest
   faultsDataFromRest() {
-      this.myUrl  ="http://localhost:8080/api/faults/ejGroupBy?fecha=%272024/03/10%27%20AND%20%272024/03/16%27&maquina=5&turno=Tarde";
+      this.myUrl ="http://localhost:8080/api/faults/etifGroupBy?fecha='2024/04/02' AND '2024/04/02'&maquina=5&turno=Tarde&maquina=5&turno=Tarde";
       this.http.get(this.myUrl).subscribe(data=>{
-          console.log(data);
+         this.data=data as Faults[];
       });
   }
 
