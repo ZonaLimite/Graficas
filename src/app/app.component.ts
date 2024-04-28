@@ -16,10 +16,10 @@ export class AppComponent {
   }
 
   ngOnInit(){
-    setInterval(() =>{
+    /*setInterval(() =>{
       this.faultsService.faultsDataFromRest();
       this.interval++;
-    }, 3000);
+    }, 3000);*/
   }
 
   //La propiedad single apunta a un metodo  del servcio
